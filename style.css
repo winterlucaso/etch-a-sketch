@@ -17,45 +17,57 @@ body {
 
 header {
     text-align: center;
+    background-color: #119DA4;
+}
+
+h1 {
+    margin: 0px;
+    padding: 20px;
 }
 
 .working-block {
     display: flex;
     /* justify-content: center; */
-    justify-content:space-between;
+    justify-content: center;
     align-items: center;
     /* flex-grow: 1; */
     background-color: #AEECEF;
 }
 
+
+/* Tool Bar */
 .sidebar {
+    display: flex;
+    flex-direction: column;
     margin: 20px;
     padding: 5px;
+    background-color: #3066BE;
+    border-radius: 5px;
 }
 
-.grid {
-    border: 1px solid red;
-    display: flex;
+.tool-btn {
+    font-size: 15px;
+    margin: 5px;
+    padding: 3px;
+}
+
+/* Grid */
+.grid-container {
+    border: 8px solid #3066BE;
+    border-radius: 5px;
+    display: grid;
     margin: 20px;
     height: 400px;
     width: 400px;
 }
 
-.gridRow {
-    display:flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-}
-
 .gridSquare {
-    display: flex;
-    width: 20px;
-    height: 20px;
-    flex: 1 1 auto;
-    background-color: rgb(152, 152, 152);
+    background-color: rgb(228, 228, 228);
     border: 1px solid rgb(0, 0, 0);
 }
 
 footer {
     text-align: center;
+    background-color: #119DA4;
+    padding: 20px;
 }
