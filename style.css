@@ -1,4 +1,61 @@
+/* 
+Color Palette
+https://coolors.co/3066be-119da4-6d9dc5-80ded9-aeecef 
+*/
+
 /* Border test */
-* {
-    border: 2px solid red;
+/* * {
+    border: 1px solid red;
+} */
+
+body {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* flex-basis: 1 1 0; */
+}
+
+header {
+    text-align: center;
+}
+
+.working-block {
+    display: flex;
+    /* justify-content: center; */
+    justify-content:space-between;
+    align-items: center;
+    /* flex-grow: 1; */
+    background-color: #AEECEF;
+}
+
+.sidebar {
+    margin: 20px;
+    padding: 5px;
+}
+
+.grid {
+    border: 1px solid red;
+    display: flex;
+    margin: 20px;
+    height: 400px;
+    width: 400px;
+}
+
+.gridRow {
+    display:flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+
+.gridSquare {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    flex: 1 1 auto;
+    background-color: rgb(152, 152, 152);
+    border: 1px solid rgb(0, 0, 0);
+}
+
+footer {
+    text-align: center;
 }
