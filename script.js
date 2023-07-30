@@ -43,7 +43,7 @@ function deleteGrid() {
 function handleSqrClick(event, currentTool) {
     if (event.type === 'mouseover' && !mouseDown) return;
     switch(currentTool) {
-        case "blacknwhite":
+        case "black":
             sqrToBlack(event.target);
             return;
         case "rainbow":
@@ -105,7 +105,7 @@ const btn3 = document.getElementById('btn3')
 const btn4 = document.getElementById('btn4')
 const btn5 = document.getElementById('btn5')
 
-btn1.addEventListener('click', () => (handleToolClick("blacknwhite")));
+btn1.addEventListener('click', () => (handleToolClick("black")));
 btn2.addEventListener('click', () => (handleToolClick("rainbow")));
 btn3.addEventListener('click', () => (handleToolClick("shading")));
 btn4.addEventListener('click', () => (handleToolClick("eraser")));
@@ -116,7 +116,7 @@ let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
-// Slider
+// Slider values
 var slider = document.getElementById("myRange");
 var gridSizeOutput = document.getElementById("gridSizeValue");
 gridSizeOutput.innerHTML = slider.value; // Display the default slider value
@@ -124,15 +124,15 @@ gridSizeOutput.innerHTML = slider.value; // Display the default slider value
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
   gridSizeOutput.innerHTML = this.value;
+  resetGridSize(slider.value);
 }
 
 
 
 
 // Script
-let currentTool = "blacknwhite";
+let currentTool = "black";
 let colorArrayHSL = "hsl(0, 0%, 100%)";
-// let gridSize = 16;
 initializeGrid(gridSizeValue.innerHTML);
 let randomColor = Math.floor(Math.random()*16777215).toString(16);
 
