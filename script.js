@@ -1,6 +1,4 @@
 // TO DO:
-// - shading button
-// - hover functionality over sqrs
 // - better icons for tools
 
 
@@ -11,6 +9,7 @@ function initializeGrid(gridSize) {
         const gridSquare = document.createElement('div');
         gridSquare.classList.add("gridSquare");
         gridSquare.setAttribute('id', "sqr" + `${x}`);
+        gridSquare.style.backgroundColor = "rgb(255, 255, 255)";
 
         // 2 Event listeners: one to cover single clicks, and one for single clicks && mousedown
         gridSquare.addEventListener('mouseover', function(e) {
@@ -39,7 +38,7 @@ function deleteGrid() {
     console.log("deleted grid");
 }
 
-// Tools
+// Handle clicks on squares
 function handleSqrClick(event, currentTool) {
     if (event.type === 'mouseover' && !mouseDown) return;
     switch(currentTool) {
@@ -58,6 +57,7 @@ function handleSqrClick(event, currentTool) {
     }
 }
 
+// Update Tool Selection
 function handleToolClick(playerSelection) {
     currentTool = `${playerSelection}`;
     console.log("currentTool: " + currentTool);
@@ -65,20 +65,12 @@ function handleToolClick(playerSelection) {
 
 
 // Tool Functions
-function sqrToBlack(e) {
-    e.style.backgroundColor = "black";
+function sqrToBlack(sqr) {
+    sqr.style.backgroundColor = "rgb(0, 0, 0)";
 }
 
-function sqrToRainbow(e) {
-    e.style.backgroundColor = get_random_color();
-}
-
-function sqrToShade(e) {
-    // console.log(e.style.backgroundColor);
-    // colorArrayHSL = e.style.backgroundColor.split(",");
-    // colorArrayHSL[2] - (1)
-    // e.style.backgroundColor = hsl('x, x%, x%');
-    // console.log(e.style.backgroundColor);
+function sqrToRainbow(sqr) {
+    sqr.style.backgroundColor = get_random_color();
 }
 
 function rand(min, max) {
@@ -86,11 +78,51 @@ function rand(min, max) {
 }
 
 function get_random_color() {
-    var h = rand(1, 360);
-    var s = rand(0, 100);
-    var l = rand(0, 100);
-    return 'hsl(' + h + ',' + s + '%,' + l + '%)';
+    var r = rand(0, 255);
+    var g = rand(0, 255);
+    var b = rand(0, 255);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
 }
+
+function sqrToShade(sqr) {
+    // Get and convert RGB value to HSL
+    var rgb = sqr.style.backgroundColor;
+    rgb = rgb.replace(/[^\d,]/g, '').split(',');
+    var hslArray = RGBToHSL(rgb[0], rgb[1], rgb[2]);
+
+    // Reduce lightness by 10 if value is over 10; otherwise, set to 0
+    if (hslArray[2] < 10) {
+        hslArray[2] = 0;
+    }
+    else {
+        hslArray[2] -= 10;
+    }
+
+    // Set sqr background to new hsl value (browser autoconverts to RGB)
+    sqr.style.backgroundColor = 'hsl(' + hslArray[0] + ', ' + hslArray[1] + '%,' + hslArray[2] + '%)';
+}
+
+// Convert RGB value to HSL (return as array)
+// Credit: https://www.30secondsofcode.org/js/s/rgb-to-hsl/
+function RGBToHSL(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const l = Math.max(r, g, b);
+    const s = l - Math.min(r, g, b);
+    const h = s
+      ? l === r
+        ? (g - b) / s
+        : l === g
+        ? 2 + (b - r) / s
+        : 4 + (r - g) / s
+      : 0;
+    return [
+        60 * h < 0 ? 60 * h + 360 : 60 * h,
+        100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+        (100 * (2 * l - s)) / 2,
+    ];
+};
 
 function sqrToErase(e) {
     e.style.backgroundColor = "hsl(0, 0%, 100%)";
