@@ -1,6 +1,5 @@
 // TO DO:
 // - shading button
-// - eraser button
 // - hover functionality over sqrs
 // - better icons for tools
 
@@ -53,8 +52,8 @@ function handleSqrClick(event, currentTool) {
         case "shading":
             sqrToShade(event.target);
             return;
-        case "tbd":
-            //changeColor(playerSelection);
+        case "eraser":
+            sqrToErase(event.target);
             return;
     }
 }
@@ -93,6 +92,10 @@ function get_random_color() {
     return 'hsl(' + h + ',' + s + '%,' + l + '%)';
 }
 
+function sqrToErase(e) {
+    e.style.backgroundColor = "hsl(0, 0%, 100%)";
+}
+
 // UI
 
 const gridContainer = document.querySelector('.grid-container')
@@ -105,7 +108,7 @@ const btn5 = document.getElementById('btn5')
 btn1.addEventListener('click', () => (handleToolClick("blacknwhite")));
 btn2.addEventListener('click', () => (handleToolClick("rainbow")));
 btn3.addEventListener('click', () => (handleToolClick("shading")));
-btn4.addEventListener('click', () => (handleToolClick("tbd")));
+btn4.addEventListener('click', () => (handleToolClick("eraser")));
 btn5.addEventListener('click', () => (resetGridSize(slider.value)));
 
 // mousedown listener
