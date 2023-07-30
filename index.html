@@ -14,13 +14,20 @@
   </header>
 
   <div class="working-block">
-    <div class="sidebar">
-      <button id="btn1" class="tool-btn">Black/White</button>
-      <button id="btn2" class="tool-btn">Rainbow</button>
-      <button id="btn3" class="tool-btn">Shading</button>
-      <button id="btn4" class="tool-btn">o</button>
+    <div class="main-container">
+      <div class="sidebar">
+        <button id="btn1" class="tool-btn">Black/White</button>
+        <button id="btn2" class="tool-btn">Rainbow</button>
+        <button id="btn3" class="tool-btn">Shading</button>
+        <button id="btn4" class="tool-btn">o</button>
+        <button id="btn5" class="tool-btn">Reset</button>
+      </div>
+      <div class="grid-container"></div>
     </div>
-    <div class="grid-container">
+    <div class="slidecontainer">
+      <span class="gridSizeLabel">Grid Size: </span>
+      <span class="gridSizeLabel" id="gridSizeValue"></span>
+      <input type="range" min="4" max="64" value="16" class="slider" id="myRange">
     </div>
   </div>
 
