@@ -1,3 +1,9 @@
+// TO DO:
+// - shading button
+// - eraser button
+// - hover functionality over sqrs
+// - better icons for tools
+
 
 // Initialize Grid and create squares
 function initializeGrid(gridSize) {
@@ -7,17 +13,15 @@ function initializeGrid(gridSize) {
         gridSquare.classList.add("gridSquare");
         gridSquare.setAttribute('id', "sqr" + `${x}`);
 
-        gridSquare.addEventListener('click', function(e) {
-            console.log(gridSquare);
-            console.log(e);
-            handleSqrClick(gridSquare, currentTool);
+        // 2 Event listeners: one to cover single clicks, and one for single clicks && mousedown
+        gridSquare.addEventListener('mouseover', function(e) {
+            // console.log(gridSquare);
+            // console.log(e);
+            handleSqrClick(e, currentTool);
         });
-        // gridSquare.addEventListener('click', () => {
-        //     console.log(gridSquare);
-        //     console.log(e);
-        //     //changeColor(gridSquare);
-        //     handleSqrClick(gridSquare, currentTool);
-        // });
+        gridSquare.addEventListener('mousedown', function(e) {
+            handleSqrClick(e, currentTool);
+        });
         gridContainer.appendChild(gridSquare);
     }
     console.log("Finished appending sqrs");
@@ -37,16 +41,17 @@ function deleteGrid() {
 }
 
 // Tools
-function handleSqrClick(playerSelection, currentTool) {
+function handleSqrClick(event, currentTool) {
+    if (event.type === 'mouseover' && !mouseDown) return;
     switch(currentTool) {
         case "blacknwhite":
-            sqrToBlack(playerSelection);
+            sqrToBlack(event.target);
             return;
         case "rainbow":
-            sqrToRainbow(playerSelection);
+            sqrToRainbow(event.target);
             return;
         case "shading":
-            sqrToShade(playerSelection);
+            sqrToShade(event.target);
             return;
         case "tbd":
             //changeColor(playerSelection);
@@ -101,7 +106,12 @@ btn1.addEventListener('click', () => (handleToolClick("blacknwhite")));
 btn2.addEventListener('click', () => (handleToolClick("rainbow")));
 btn3.addEventListener('click', () => (handleToolClick("shading")));
 btn4.addEventListener('click', () => (handleToolClick("tbd")));
-btn5.addEventListener('click', () => (resetGridSize(gridSizeOutput.innerHTML)));
+btn5.addEventListener('click', () => (resetGridSize(slider.value)));
+
+// mousedown listener
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
 
 // Slider
 var slider = document.getElementById("myRange");

@@ -9,29 +9,33 @@ https://coolors.co/3066be-119da4-6d9dc5-80ded9-aeecef
 } */
 
 body {
-    /* display: flex; */
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #0C1A31;
     /* flex-basis: 1 1 0; */
 }
 
 header {
     text-align: center;
-    background-color: #119DA4;
+    background-color: #80DED9;
+    border: 1px solid black;
+    border-top: none;
 }
 
 h1 {
     margin: 0px;
     padding: 20px;
+    /* color: white; */
 }
 
 .working-block {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-    background-color: #c0d3dd;
+    background-color: #AEECEF;
+    border-radius: 40px;
 }
 
 .main-container {
@@ -70,7 +74,7 @@ h1 {
 
 .gridSquare {
     background-color: hsl(0, 0%, 100%);
-    border: 1px solid rgb(0, 0, 0);
+    /* border: 1px solid rgb(0, 0, 0); */
 }
 
 /* Slider */
@@ -85,7 +89,7 @@ h1 {
     width: 50%; /* Width of the outside container */
     padding: 10px;
     background-color: #80DED9;
-    border: 2px solid black;
+    border: 1px solid black;
   }
   
 /* The slider itself */
@@ -121,12 +125,4 @@ h1 {
     height: 25px; /* Slider handle height */
     background: #04AA6D; /* Green background */
     cursor: pointer; /* Cursor on hover */
-}
-
-
-/* Footer */
-footer {
-    text-align: center;
-    background-color: #119DA4;
-    padding: 20px;
 }
