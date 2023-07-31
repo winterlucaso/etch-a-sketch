@@ -1,5 +1,6 @@
 // TO DO:
 // - better icons for tools
+// - add border toggle?
 
 
 // Initialize Grid and create squares
@@ -158,9 +159,6 @@ slider.oninput = function() {
   gridSizeOutput.innerHTML = this.value;
   resetGridSize(slider.value);
 }
-
-
-
 
 // Script
 let currentTool = "black";
